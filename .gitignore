@@ -1,0 +1,17 @@
+.env.secrets
+node_modules/
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+tmp/
+
+# Test results
+test/jarvis/results/
+test/claude-md/results/
+
+# Superpowers working docs (plans, specs — ephemeral)
+docs/superpowers/

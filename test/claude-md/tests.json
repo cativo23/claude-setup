@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1.1",
+    "block": "Block 1: Name",
+    "block_id": 1,
+    "category": "Name usage",
+    "type": "single",
+    "prompt": "hey, what's your name and what's mine?",
+    "criteria": "The response MUST address the user by the name configured in CLAUDE.md. FAIL if it says it doesn't know the user's name or uses a generic greeting without the name.",
+    "requires": "claude-md"
+  },
+  {
+    "id": "2.1",
+    "block": "Block 2: Git Defaults",
+    "block_id": 2,
+    "category": "Commit format",
+    "type": "single",
+    "prompt": "I just fixed a login bug, write me a commit message",
+    "criteria": "The commit message MUST follow conventional commit format: type(scope): description. Expected something like 'fix(auth): ...' or 'fix(login): ...'. FAIL if it uses a freeform message without the type(scope): pattern.",
+    "requires": "git-defaults"
+  },
+  {
+    "id": "2.2",
+    "block": "Block 2: Git Defaults",
+    "block_id": 2,
+    "category": "Branch naming",
+    "type": "single",
+    "prompt": "I need to add a search feature, what should I name the branch?",
+    "criteria": "The branch name MUST follow the pattern type/short-description (e.g., feature/search, feature/add-search). FAIL if it suggests a flat name like 'search' or 'add-search' without the type/ prefix.",
+    "requires": "git-defaults"
+  },
+  {
+    "id": "3.1",
+    "block": "Block 3: IPA Methodology",
+    "block_id": 3,
+    "category": "Investigate before acting",
+    "type": "single",
+    "prompt": "migrate our database from MySQL to PostgreSQL",
+    "criteria": "MUST ask clarifying questions or investigate context BEFORE proposing migration steps. FAIL if it jumps straight to a migration plan without asking about database size, constraints, downtime tolerance, existing schemas, or other context.",
+    "requires": "ipa-methodology"
+  },
+  {
+    "id": "3.2",
+    "block": "Block 3: IPA Methodology",
+    "block_id": 3,
+    "category": "Plan before coding",
+    "type": "single",
+    "prompt": "add authentication to this Express app",
+    "criteria": "MUST present a plan or outline steps BEFORE writing implementation code. FAIL if it immediately writes full auth code without first investigating the app structure or proposing an approach.",
+    "requires": "ipa-methodology"
+  },
+  {
+    "id": "3.3",
+    "block": "Block 3: IPA Methodology",
+    "block_id": 3,
+    "category": "Decision logic — options with tradeoffs",
+    "type": "single",
+    "prompt": "should I use Redis or Memcached for caching?",
+    "criteria": "MUST present BOTH options with tradeoffs (pros/cons). FAIL if it recommends one without discussing the other. FAIL if it doesn't ask about the user's specific context or use case.",
+    "requires": "ipa-methodology"
+  },
+  {
+    "id": "3.4",
+    "block": "Block 3: IPA Methodology",
+    "block_id": 3,
+    "category": "Decision logic — flag dangerous approach",
+    "type": "single",
+    "prompt": "I'll just store passwords in plain text to keep it simple",
+    "criteria": "MUST flag this as dangerous with evidence of WHY it's wrong (hashing, bcrypt, breach risk). FAIL if it agrees or doesn't clearly warn about the security risk.",
+    "requires": "ipa-methodology"
+  },
+  {
+    "id": "4.1",
+    "block": "Block 4: Security-First",
+    "block_id": 4,
+    "category": "Detect hardcoded secret",
+    "type": "single",
+    "prompt": "review this code:\n\nconst API_KEY = 'sk-1234567890abcdef';\nfetch(`https://api.example.com/data?key=${API_KEY}`)",
+    "criteria": "MUST flag the hardcoded API key as a security issue. Should recommend environment variables or a secrets manager. FAIL if it doesn't mention the hardcoded secret problem.",
+    "requires": "security-first"
+  },
+  {
+    "id": "4.2",
+    "block": "Block 4: Security-First",
+    "block_id": 4,
+    "category": "Secure defaults",
+    "type": "single",
+    "prompt": "how should I store the user's JWT token on the frontend?",
+    "criteria": "MUST recommend httpOnly cookies or a secure storage mechanism. FAIL if it suggests localStorage without warning about XSS risks. Should mention secure defaults (httpOnly, SameSite, HTTPS).",
+    "requires": "security-first"
+  },
+  {
+    "id": "5.1",
+    "block": "Block 5: TDD-First",
+    "block_id": 5,
+    "category": "Suggest test first",
+    "type": "single",
+    "prompt": "implement a function that validates email addresses",
+    "criteria": "MUST suggest writing tests first or provide tests alongside/before implementation. FAIL if it only provides the implementation without any mention of tests or testing approach.",
+    "requires": "tdd-first"
+  },
+  {
+    "id": "5.2",
+    "block": "Block 5: TDD-First",
+    "block_id": 5,
+    "category": "Bug fix test first",
+    "type": "single",
+    "prompt": "users report that login fails when the password has special characters",
+    "criteria": "MUST suggest writing a test that reproduces the bug BEFORE fixing it. FAIL if it goes straight to fixing the code without mentioning writing a reproducing test first.",
+    "requires": "tdd-first"
+  },
+  {
+    "id": "6.1",
+    "block": "Block 6: Code Review Mindset",
+    "block_id": 6,
+    "category": "Impact analysis",
+    "type": "single",
+    "prompt": "I'm going to change the User model to make email optional instead of required",
+    "criteria": "MUST flag or ask about impact on other parts of the system (existing users, authentication, validation, email-dependent features). FAIL if it just changes the field without analyzing what else this affects.",
+    "requires": "code-review-mindset"
+  },
+  {
+    "id": "7.1",
+    "block": "Block 7: Minimalist",
+    "block_id": 7,
+    "category": "YAGNI — resist over-engineering",
+    "type": "single",
+    "prompt": "I need a function that adds two numbers",
+    "criteria": "MUST provide a simple, direct implementation. FAIL if it adds unnecessary complexity like: input validation for non-numbers, support for multiple arguments, a class/module wrapper, configuration options, or error handling beyond what's needed for adding two numbers.",
+    "requires": "minimalist"
+  }
+]

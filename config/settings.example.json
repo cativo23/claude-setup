@@ -1,0 +1,21 @@
+{
+  "$schema": "https://claude.ai/schemas/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(npm test*)",
+      "Bash(npm run lint*)",
+      "Bash(npx tsc --noEmit*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)*",
+      "Bash(git push --force)*"
+    ]
+  },
+  "hooks": {}
+}
